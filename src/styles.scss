@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+
+/* Estilos de botones por defecto */
+button {
+  padding: 10px 20px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+/* 🔴 Estilos para el tema rojo */
+body.theme-rojo .app-button {
+  background-color: #d32f2f;
+}
+
+/* 🔵 Estilos para el tema azul */
+body.theme-azul .app-button {
+  background-color: #1565c0;
+}
+
+body.theme-rojo .text-color {
+  color: #d32f2f; /* El color del texto será rojo */
+}
+
+body.theme-azul .text-color {
+  color: #1565c0; /* El color del texto será azul */
+}
