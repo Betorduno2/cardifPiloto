@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from './config.service';
 import { ThemeConfig } from '../interfaces/project-config.interface';
+import { ThemeStoreService } from '../../services/theme-store.service';
+import { Observable, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +11,43 @@ import { ThemeConfig } from '../interfaces/project-config.interface';
 export class ThemeService {
   private readonly THEME_PREFIX = 'theme-';
 
-  constructor(private configService: ConfigService) {
+  constructor(
+    private configService: ConfigService,
+    private themeStoreService: ThemeStoreService
+  ) {
     this.initializeTheme();
   }
 
   private initializeTheme(): void {
-    this.configService.currentProject$.subscribe((project: any) => {
+    // Combinar el tema del store con la configuración del proyecto
+    combineLatest([
+      this.configService.currentProject$,
+      this.themeStoreService.getCurrentTheme()
+    ]).subscribe(([project, reduxTheme]) => {
       if (project) {
         this.applyTheme(project.theme);
       }
+      // También aplicar la clase del tema desde Redux
+      this.applyReduxTheme(reduxTheme);
     });
+  }
+
+  private applyReduxTheme(theme: 'theme-rojo' | 'theme-azul'): void {
+    // Remover temas de Redux anteriores
+    const body = document.body;
+    body.classList.remove('theme-rojo', 'theme-azul');
+    // Aplicar nuevo tema
+    body.classList.add(theme);
+  }
+
+  // Método para cambiar tema usando Redux
+  changeTheme(theme: 'theme-rojo' | 'theme-azul'): void {
+    this.themeStoreService.changeTheme(theme);
+  }
+
+  // Observable del tema actual desde Redux
+  getCurrentThemeFromStore(): Observable<'theme-rojo' | 'theme-azul'> {
+    return this.themeStoreService.getCurrentTheme();
   }
 
   applyTheme(themeConfig: ThemeConfig): void {

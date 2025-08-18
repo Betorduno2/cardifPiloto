@@ -14,6 +14,17 @@
       <p class="text-primary">Proyecto: {{ currentProject.name }}</p>
     </div>
     
+    <!-- Control de tema Redux -->
+    <div class="theme-control mb-lg">
+      <h3>Control de Tema (Redux)</h3>
+      <p>Tema actual: <strong>{{ currentTheme$ | async }}</strong></p>
+      <button 
+        class="btn btn-secondary"
+        (click)="switchTheme()">
+        Cambiar Tema
+      </button>
+    </div>
+    
     <!-- Formulario específico del componente -->
     <div class="mb-lg">
       <label for="userInput" class="mb-sm">Ingresa tu información:</label>
