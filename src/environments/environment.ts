@@ -22,7 +22,7 @@ export const environment = {
   
   // Configuración de proyectos por ambiente
   projectConfig: {
-    defaultProject: 'cardif-banco-azul',
+    defaultProject: 'cardif-banco-rojo',
     availableProjects: ['cardif-banco-rojo', 'cardif-banco-azul'],
     allowProjectSwitching: true  // Permitir cambio dinámico en desarrollo
   },

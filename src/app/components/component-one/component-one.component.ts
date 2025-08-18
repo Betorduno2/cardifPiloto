@@ -35,9 +35,10 @@ export class ComponentOneComponent extends BaseFlowComponent {
     return this.isValid;
   }
 
-  onInputChange(value: string): void {
-    this.userInput = value;
-    this.isValid = value.trim().length > 3;
+  onInputChange(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.userInput = target.value;
+    this.isValid = this.userInput.trim().length > 3;
   }
 
   // Método específico para este componente

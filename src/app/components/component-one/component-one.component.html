@@ -11,7 +11,7 @@
     
     <!-- Información del proyecto actual -->
     <div class="mb-lg" *ngIf="currentProject">
-      <p class="text-primary">Proyecto: {{ currentProject.name }}</p>
+      <p class="text-primary">Proyecto: {{ currentProject?.name }}</p>
     </div>
     
     <!-- Formulario específico del componente -->
@@ -21,7 +21,7 @@
         id="userInput"
         type="text" 
         [(ngModel)]="userInput"
-        (input)="onInputChange(userInput)"
+        (input)="onInputChange($event)"
         placeholder="Mínimo 4 caracteres"
         class="form-input"
       />
