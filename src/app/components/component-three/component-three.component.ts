@@ -1,20 +1,49 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FlowService } from 'src/app/services/flow.service';
+import { BaseFlowComponent } from '../../core/components/base-flow.component';
+import { FlowService } from '../../services/flow.service';
+import { ConfigService } from '../../core/services/config.service';
+import { ThemeService } from '../../core/services/theme.service';
 
 @Component({
   selector: 'app-component-three',
   templateUrl: './component-three.component.html',
   styleUrls: ['./component-three.component.scss']
 })
-export class ComponentThreeComponent {
-constructor(public flowService: FlowService) {}
-  goToNextStep() {
-    if (this.flowService.currentBank === 'rojo') {
-      this.flowService.goToNextStep('rojo-step2');
-    } else if (this.flowService.currentBank === 'azul') {
-      this.flowService.goToNextStep('azul-step3');
+export class ComponentThreeComponent extends BaseFlowComponent {
+  protected stepId = 'rojo-step2'; // Se actualizará dinámicamente
+
+  constructor(
+    flowService: FlowService,
+    configService: ConfigService,
+    themeService: ThemeService
+  ) {
+    super(flowService, configService, themeService);
+  }
+
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.updateStepIdForComponent();
+  }
+
+  private updateStepIdForComponent(): void {
+    const project = this.configService.getCurrentProject();
+    if (project) {
+      const step = project.flow.find(s => s.path === 'componentThree');
+      if (step) {
+        this.stepId = step.stepId;
+        this.refreshStepConfiguration();
+      }
     }
   }
 
+  private refreshStepConfiguration(): void {
+    this.stepConfig = this.flowService.getStepConfig(this.stepId);
+    this.isFirstStep = this.flowService.isFirstStep(this.stepId);
+    this.isLastStep = this.flowService.isLastStep(this.stepId);
+    this.progress = this.flowService.getFlowProgress(this.stepId);
+  }
+
+  protected onValidateStep(): boolean {
+    return true;
+  }
 }
