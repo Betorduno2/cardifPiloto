@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { ComponentOneComponent } from '../../components/component-one/component-one.component';
+import { ComponentOneComponent } from '../../pages/component-one/component-one.component';
 
 const routes: Routes = [
   { path: '', component: ComponentOneComponent }
