@@ -10,12 +10,21 @@ export class KnowYourClientEffects {
   loadData$ = createEffect(() =>
     this.actions$.pipe(
       ofType(KnowYourClientActions.loadKnowYourClientData),
-      mergeMap(() =>
-        of(this.mockService.getMockData()).pipe(
-          map(data => KnowYourClientActions.loadKnowYourClientDataSuccess({ data })),
-          catchError(error => of(KnowYourClientActions.loadKnowYourClientDataFailure({ error })))
-        )
-      )
+      mergeMap(() => {
+        console.log('KnowYourClient effect triggered');
+        const mockData = this.mockService.getMockData();
+        console.log('Mock data:', mockData);
+        return of(mockData).pipe(
+          map(data => {
+            console.log('Dispatching success action with data:', data);
+            return KnowYourClientActions.loadKnowYourClientDataSuccess({ data });
+          }),
+          catchError(error => {
+            console.log('Error in effect:', error);
+            return of(KnowYourClientActions.loadKnowYourClientDataFailure({ error }));
+          })
+        );
+      })
     )
   );
 

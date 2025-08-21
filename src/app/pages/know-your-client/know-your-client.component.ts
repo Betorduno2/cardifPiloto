@@ -46,10 +46,17 @@ export class KnowYourClientComponent extends BaseFlowComponent implements OnInit
 
   override ngOnInit(): void {
     super.ngOnInit();
+    console.log('KnowYourClient component initialized');
     // Inicializar el tema en el store
     // this.themeStoreService.setTheme('theme-azul'); // Comentado hasta verificar método correcto
     // Cargar datos específicos de este componente
+    console.log('Dispatching loadKnowYourClientData action');
     this.store.dispatch(loadKnowYourClientData());
+    
+    // Debug: subscribirse a los observables para ver qué está pasando
+    this.data$.subscribe(data => console.log('Data from store:', data));
+    this.loading$.subscribe(loading => console.log('Loading from store:', loading));
+    this.error$.subscribe(error => console.log('Error from store:', error));
   }
 
   // Método de validación específico para este componente
