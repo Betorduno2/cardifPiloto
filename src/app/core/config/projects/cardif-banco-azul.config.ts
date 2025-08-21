@@ -29,7 +29,7 @@ export const CARDIF_BANCO_AZUL: ProjectConfig = {
     {
       stepId: 'azul-step1',
       path: 'componentOne',
-      component: 'ComponentOneComponent',
+      component: 'KnowYourClientComponent',
       config: {
         title: 'Bienvenido al Banco Azul',
         description: 'Tu partner financiero de confianza',
@@ -39,7 +39,7 @@ export const CARDIF_BANCO_AZUL: ProjectConfig = {
     {
       stepId: 'azul-step2',
       path: 'componentTwo',
-      component: 'ComponentTwoComponent',
+      component: 'DimensionsComponent',
       config: {
         title: 'Información Básica',
         description: 'Completa tus datos básicos',
@@ -49,7 +49,7 @@ export const CARDIF_BANCO_AZUL: ProjectConfig = {
     {
       stepId: 'azul-step3',
       path: 'componentThree',
-      component: 'ComponentThreeComponent',
+      component: 'DetailsDimensionsComponent',
       config: {
         title: 'Verificación',
         description: 'Verifica tu identidad',
@@ -59,7 +59,7 @@ export const CARDIF_BANCO_AZUL: ProjectConfig = {
     {
       stepId: 'azul-step4',
       path: 'componentFour',
-      component: 'ComponentFourComponent',
+      component: 'ProtectionsComponent',
       config: {
         title: 'Finalización',
         description: 'Finaliza tu proceso',

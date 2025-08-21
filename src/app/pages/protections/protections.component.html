@@ -1,0 +1,59 @@
+<div class="container fade-in">
+  <!-- Barra de progreso -->
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="progress"></div>
+  </div>
+  
+  <!-- Contenido principal -->
+  <div class="card">
+    <h1>{{ getTitle() }}</h1>
+    <p class="mb-lg">{{ getDescription() }}</p>
+    
+    <!-- Información del proyecto actual -->
+    <div class="mb-lg" *ngIf="currentProject">
+      <p class="text-primary">Proyecto: {{ currentProject?.name }}</p>
+    </div>
+    
+    <!-- Data mock desde Redux -->
+    <div class="mb-lg">
+      <h3>Data Mock (Redux)</h3>
+      <ng-container *ngIf="loading$ | async; else dataLoaded">
+        <p>Cargando datos...</p>
+      </ng-container>
+      <ng-template #dataLoaded>
+        <div *ngIf="data$ | async as data">
+          <p class="text-success">{{ data.value }}</p>
+        </div>
+        <div *ngIf="error$ | async as error">
+          <p class="text-error">Error: {{ error }}</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  
+  <!-- Navegación -->
+  <div class="flow-navigation">
+    <button 
+      *ngIf="!isFirstStep" 
+      class="btn btn-outline"
+      (click)="goToPreviousStep()">
+      {{ getPreviousButtonText() }}
+    </button>
+    
+    <div *ngIf="isFirstStep"></div>
+    
+    <button 
+      *ngIf="!isLastStep"
+      class="btn btn-primary"
+      (click)="handleNextClick()">
+      {{ getButtonText() }}
+    </button>
+    
+    <button 
+      *ngIf="isLastStep"
+      class="btn btn-primary"
+      (click)="handleNextClick()">
+      {{ getButtonText() }}
+    </button>
+  </div>
+</div>

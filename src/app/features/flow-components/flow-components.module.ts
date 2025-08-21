@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FlowComponentsRoutingModule } from './flow-components-routing.module';
-import { ComponentOneComponent } from '../../pages/component-one/component-one.component';
-import { ComponentTwoComponent } from '../../pages/component-two/component-two.component';
-import { ComponentThreeComponent } from '../../pages/component-three/component-three.component';
-import { ComponentFourComponent } from '../../pages/component-four/component-four.component';
+import { KnowYourClientComponent } from '../../pages/know-your-client/know-your-client.component';
+import { DimensionsComponent } from '../../pages/dimensions/dimensions.component';
+import { DetailsDimensionsComponent } from '../../pages/details-dimensions/details-dimensions.component';
+import { ProtectionsComponent } from '../../pages/protections/protections.component';
 
 @NgModule({
   declarations: [
-    ComponentOneComponent,
-    ComponentTwoComponent,
-    ComponentThreeComponent,
-    ComponentFourComponent
+    KnowYourClientComponent,
+    DimensionsComponent,
+    DetailsDimensionsComponent,
+    ProtectionsComponent
   ],
   imports: [
     CommonModule,

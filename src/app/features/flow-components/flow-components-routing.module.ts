@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ComponentOneComponent } from '../../pages/component-one/component-one.component';
-import { ComponentTwoComponent } from '../../pages/component-two/component-two.component';
-import { ComponentThreeComponent } from '../../pages/component-three/component-three.component';
-import { ComponentFourComponent } from '../../pages/component-four/component-four.component';
+import { KnowYourClientComponent } from '../../pages/know-your-client/know-your-client.component';
+import { DimensionsComponent } from '../../pages/dimensions/dimensions.component';
+import { DetailsDimensionsComponent } from '../../pages/details-dimensions/details-dimensions.component';
+import { ProtectionsComponent } from '../../pages/protections/protections.component';
 
 const routes: Routes = [
-  { path: 'componentOne', component: ComponentOneComponent },
-  { path: 'componentTwo', component: ComponentTwoComponent },
-  { path: 'componentThree', component: ComponentThreeComponent },
-  { path: 'componentFour', component: ComponentFourComponent }
+  { path: 'componentOne', component: KnowYourClientComponent },
+  { path: 'componentTwo', component: DimensionsComponent },
+  { path: 'componentThree', component: DetailsDimensionsComponent },
+  { path: 'componentFour', component: ProtectionsComponent }
 ];
 
 @NgModule({

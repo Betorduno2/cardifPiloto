@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { KnowYourClientComponent } from '../../pages/know-your-client/know-your-client.component';
+import { KnowYourClientComponent } from './know-your-client.component';
 
 const routes: Routes = [
   { path: '', component: KnowYourClientComponent }
@@ -18,4 +18,4 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ]
 })
-export class ComponentOneModule { }
+export class KnowYourClientModule { }

@@ -29,7 +29,7 @@ export const CARDIF_BANCO_ROJO: ProjectConfig = {
     {
       stepId: 'rojo-step1',
       path: 'componentTwo',
-      component: 'ComponentTwoComponent',
+      component: 'DimensionsComponent',
       config: {
         title: 'Bienvenido al Banco Rojo',
         description: 'Iniciemos tu proceso de solicitud',
@@ -39,7 +39,7 @@ export const CARDIF_BANCO_ROJO: ProjectConfig = {
     {
       stepId: 'rojo-step2',
       path: 'componentThree',
-      component: 'ComponentThreeComponent',
+      component: 'DetailsDimensionsComponent',
       config: {
         title: 'Datos Personales',
         description: 'Completa tu información personal',
@@ -49,7 +49,7 @@ export const CARDIF_BANCO_ROJO: ProjectConfig = {
     {
       stepId: 'rojo-step3',
       path: 'componentFour',
-      component: 'ComponentFourComponent',
+      component: 'ProtectionsComponent',
       config: {
         title: 'Confirmación',
         description: 'Revisa y confirma tu solicitud',
