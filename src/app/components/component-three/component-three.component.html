@@ -13,6 +13,21 @@
     <div class="mb-lg" *ngIf="currentProject">
       <p class="text-primary">Proyecto: {{ currentProject.name }}</p>
     </div>
+    <!-- Data mock desde Redux -->
+    <div class="mb-lg">
+      <h3>Data Mock (Redux)</h3>
+      <ng-container *ngIf="loading$ | async; else dataLoaded">
+        <p>Cargando datos...</p>
+      </ng-container>
+      <ng-template #dataLoaded>
+        <div *ngIf="data$ | async as data">
+          <p class="text-success">{{ data.value }}</p>
+        </div>
+        <div *ngIf="error$ | async as error">
+          <p class="text-error">Error: {{ error }}</p>
+        </div>
+      </ng-template>
+    </div>
   </div>
   
   <!-- Navegación -->

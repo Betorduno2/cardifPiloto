@@ -25,20 +25,20 @@
       </button>
     </div>
     
-    <!-- Formulario específico del componente -->
+    <!-- Data mock desde Redux -->
     <div class="mb-lg">
-      <label for="userInput" class="mb-sm">Ingresa tu información:</label>
-      <input 
-        id="userInput"
-        type="text" 
-        [(ngModel)]="userInput"
-        (input)="onInputChange($event)"
-        placeholder="Mínimo 4 caracteres"
-        class="form-input"
-      />
-      <div *ngIf="userInput && !isValid" class="text-error mt-sm">
-        El valor debe tener al menos 4 caracteres
-      </div>
+      <h3>Data Mock (Redux)</h3>
+      <ng-container *ngIf="loading$ | async; else dataLoaded">
+        <p>Cargando datos...</p>
+      </ng-container>
+      <ng-template #dataLoaded>
+        <div *ngIf="data$ | async as data">
+          <p class="text-success">{{ data.value }}</p>
+        </div>
+        <div *ngIf="error$ | async as error">
+          <p class="text-error">Error: {{ error }}</p>
+        </div>
+      </ng-template>
     </div>
   </div>
   

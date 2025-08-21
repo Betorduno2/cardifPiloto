@@ -5,6 +5,10 @@ import { ConfigService } from '../../core/services/config.service';
 import { ThemeService } from '../../core/services/theme.service';
 import { ThemeStoreService } from '../../services/theme-store.service';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/component-one/component-one.state';
+import * as ComponentOneActions from '../../store/component-one/component-one.actions';
+import { selectComponentOneData, selectComponentOneLoading, selectComponentOneError } from '../../store/component-one/component-one.selectors';
 
 @Component({
   selector: 'app-component-one',
@@ -12,6 +16,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./component-one.component.scss'],
 })
 export class ComponentOneComponent extends BaseFlowComponent implements OnInit {
+  data$: Observable<any>;
+  loading$: Observable<boolean>;
+  error$: Observable<any>;
   protected stepId = 'azul-step1';
 
   // Datos específicos del componente
@@ -26,25 +33,26 @@ export class ComponentOneComponent extends BaseFlowComponent implements OnInit {
     flowService: FlowService,
     configService: ConfigService,
     themeService: ThemeService,
-    private themeStoreService: ThemeStoreService
+    private themeStoreService: ThemeStoreService,
+    private store: Store<AppState>
   ) {
     super(flowService, configService, themeService);
-    
-    // Suscribirse a los observables del store
     this.currentTheme$ = this.themeStoreService.getCurrentTheme();
     this.availableThemes$ = this.themeStoreService.getAvailableThemes();
+    this.data$ = this.store.select(selectComponentOneData);
+    this.loading$ = this.store.select(selectComponentOneLoading);
+    this.error$ = this.store.select(selectComponentOneError);
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
-    
     // Inicializar el tema en el store
     this.themeStoreService.loadTheme();
-    
     // Suscribirse a cambios de tema
     this.currentTheme$.subscribe(theme => {
       console.log('Tema actual desde Redux:', theme);
     });
+    this.store.dispatch(ComponentOneActions.loadComponentOneData());
   }
 
   // Método para cambiar tema usando Redux
